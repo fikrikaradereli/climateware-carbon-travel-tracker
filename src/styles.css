@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+@theme {
+  --color-cw-pink-50: #F14794;
+  --color-cw-pink-100: #ED1979;
+  --color-cw-pink-150: #C20F60;
+  --color-cw-green-10: #F1F7F2;
+  --color-cw-green-100: #197A4E;
+  --color-cw-dark-blue-50: #798899;
+  --color-cw-dark-blue-100: #2A3349;
+  --color-cw-grey-50: #ECEEEF;
+  --color-cw-grey-100: #BABBC7;
+  --color-cw-red-100: #E51E38;
+  --color-cw-white-100: #FFFFFF;
+}
+
 body {
   @apply m-0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
