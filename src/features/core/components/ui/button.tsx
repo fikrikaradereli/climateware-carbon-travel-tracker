@@ -70,15 +70,15 @@ const VARIANT_CLASSES: Record<ButtonVariant, string> = {
     social: [
         "h-[40px] px-3 gap-2 rounded-[8px]",
         "bg-white text-cw-dark-blue-100 border border-cw-grey-100",
-        "hover:bg-cw-grey-50",
-        "active:bg-cw-grey-100",
+        "hover:bg-[#F7F7F7]",
+        "active:bg-[#E2E2E2]",
         "focus-visible:ring-cw-grey-100",
     ].join(" "),
 };
 
 const SOCIAL_LABELS: Record<SocialProvider, string> = {
-    google: "Continue with Google",
-    facebook: "Continue with Facebook",
+    google: "Connect with Google",
+    facebook: "Connect with Facebook",
 };
 
 // ─── Component ────────────────────────────────────────────────────────────────
