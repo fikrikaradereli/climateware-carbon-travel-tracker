@@ -6,7 +6,7 @@ import type { SocialProvider } from "./social-icon";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-export type ButtonVariant = "primary" | "outline" | "ghost" | "icon" | "social";
+export type ButtonVariant = "primary" | "secondary" | "outline" | "ghost" | "icon" | "social";
 
 export interface ButtonProps {
     /** Visual style of the button */
@@ -41,6 +41,14 @@ const VARIANT_CLASSES: Record<ButtonVariant, string> = {
         "hover:bg-cw-pink-50",
         "active:bg-cw-pink-150",
         "focus-visible:ring-cw-pink-100",
+    ].join(" "),
+
+    secondary: [
+        "h-[44px] px-10 rounded-[8px]",
+        "bg-white text-cw-dark-blue-100 border border-cw-dark-blue-100",
+        "hover:bg-cw-grey-50",
+        "active:bg-cw-grey-100",
+        "focus-visible:ring-cw-dark-blue-100",
     ].join(" "),
 
     outline: [
@@ -124,7 +132,7 @@ export function Button({
             {icon && <Icon name={icon} size={18} className="mr-2" />}
             <span
                 className={
-                    variant === "primary" || variant === "outline"
+                    variant === "primary" || variant === "secondary" || variant === "outline"
                         ? "text-[18px] leading-none font-bold"
                         : "text-sm leading-none font-medium"
                 }
