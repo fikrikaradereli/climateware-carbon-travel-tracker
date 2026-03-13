@@ -36,13 +36,7 @@ export interface HeaderProps {
     className?: string;
 }
 
-export function Header({
-    language = "EN",
-    onLanguageChange,
-    onNavigate,
-    onLogout,
-    className = "",
-}: HeaderProps) {
+export function Header({ language = "EN", onLanguageChange, onNavigate, onLogout, className = "" }: HeaderProps) {
     const [menuOpen, setMenuOpen] = useState(false);
     const activeNav = useActiveNav();
 
@@ -53,29 +47,26 @@ export function Header({
     return (
         <>
             <header
-                className={[
-                    "w-full flex items-center justify-between px-6 lg:px-10 h-15",
-                    className,
-                ].filter(Boolean).join(" ")}
+                className={["flex h-15 w-full items-center justify-between px-6 lg:px-10", className]
+                    .filter(Boolean)
+                    .join(" ")}
             >
                 {/* Left: Logo + separator + nav labels (desktop/tablet only) */}
                 <div className="flex items-center gap-6">
                     <Logo />
 
                     {/* Vertical separator */}
-                    <div className="hidden lg:block w-px h-6 bg-cw-grey-100" />
+                    <div className="bg-cw-grey-100 hidden h-6 w-px lg:block" />
 
                     {/* Nav labels — görsel gösterge, tıklanamaz */}
-                    <nav className="hidden lg:flex items-center gap-6" aria-label="View indicator">
-                        {(["WEB", "TABLET", "MOBILE"] as NavLink[]).map(link => (
+                    <nav className="hidden items-center gap-6 lg:flex" aria-label="View indicator">
+                        {(["WEB", "TABLET", "MOBILE"] as NavLink[]).map((link) => (
                             <span
                                 key={link}
                                 aria-current={activeNav === link ? "page" : undefined}
                                 className={[
-                                    "font-montserrat text-[16px] font-semibold leading-none select-none",
-                                    activeNav === link
-                                        ? "text-cw-green-100"
-                                        : "text-cw-dark-blue-50",
+                                    "font-montserrat text-[16px] leading-none font-semibold select-none",
+                                    activeNav === link ? "text-cw-green-100" : "text-cw-dark-blue-50",
                                 ].join(" ")}
                             >
                                 {link}
@@ -86,15 +77,9 @@ export function Header({
 
                 {/* Right: Language + Account (desktop/tablet) | Hamburger (mobile) */}
                 <div className="flex items-center gap-4">
-                    <div className="hidden lg:flex items-center gap-4">
-                        <LanguageSwitcher
-                            value={language}
-                            onChange={code => onLanguageChange?.(code)}
-                        />
-                        <AccountMenu
-                            onNavigate={page => onNavigate?.(page)}
-                            onLogout={handleLogout}
-                        />
+                    <div className="hidden items-center gap-4 lg:flex">
+                        <LanguageSwitcher value={language} onChange={(code) => onLanguageChange?.(code)} />
+                        <AccountMenu onNavigate={(page) => onNavigate?.(page)} onLogout={handleLogout} />
                     </div>
 
                     {/* Mobile hamburger */}
@@ -102,7 +87,7 @@ export function Header({
                         type="button"
                         aria-label="Open menu"
                         onClick={() => setMenuOpen(true)}
-                        className="lg:hidden text-cw-dark-blue-100 hover:text-cw-green-100 transition-colors"
+                        className="text-cw-dark-blue-100 hover:text-cw-green-100 transition-colors lg:hidden"
                     >
                         <Icon name="menu" size={32} />
                     </button>
@@ -114,7 +99,7 @@ export function Header({
                 isOpen={menuOpen}
                 onClose={() => setMenuOpen(false)}
                 activeLink={activeNav}
-                onNavigate={page => onNavigate?.(page)}
+                onNavigate={(page) => onNavigate?.(page)}
                 onLogout={handleLogout}
             />
         </>

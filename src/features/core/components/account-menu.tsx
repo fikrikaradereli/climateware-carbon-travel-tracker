@@ -42,8 +42,8 @@ export function AccountMenu({ onNavigate, onLogout, className = "" }: AccountMen
                 aria-label="Account menu"
                 aria-haspopup="menu"
                 aria-expanded={open}
-                onClick={() => setOpen(prev => !prev)}
-                className="text-cw-dark-blue-100 hover:text-cw-green-100 transition-colors cursor-pointer"
+                onClick={() => setOpen((prev) => !prev)}
+                className="text-cw-dark-blue-100 hover:text-cw-green-100 cursor-pointer transition-colors"
             >
                 <Icon name="user-circle" size={32} />
             </button>
@@ -52,14 +52,14 @@ export function AccountMenu({ onNavigate, onLogout, className = "" }: AccountMen
             {open && (
                 <div
                     role="menu"
-                    className="absolute right-0 top-full mt-2 bg-white rounded-xl shadow-lg z-50 min-w-[160px] overflow-hidden"
+                    className="absolute top-full right-0 z-50 mt-2 min-w-40 overflow-hidden rounded-xl bg-white shadow-lg"
                 >
                     <div className="py-1">
                         <button
                             type="button"
                             role="menuitem"
                             onClick={() => navigate("profile")}
-                            className="w-full text-left px-5 py-3 font-rubik font-medium text-[16px] text-cw-dark-blue-100 hover:bg-cw-grey-50 transition-colors"
+                            className="font-rubik text-cw-dark-blue-100 hover:bg-cw-grey-50 w-full px-5 py-3 text-left text-[16px] font-medium transition-colors"
                         >
                             Profile
                         </button>
@@ -67,17 +67,17 @@ export function AccountMenu({ onNavigate, onLogout, className = "" }: AccountMen
                             type="button"
                             role="menuitem"
                             onClick={() => navigate("dashboard")}
-                            className="w-full text-left px-5 py-3 font-rubik font-medium text-[16px] text-cw-dark-blue-100 hover:bg-cw-grey-50 transition-colors"
+                            className="font-rubik text-cw-dark-blue-100 hover:bg-cw-grey-50 w-full px-5 py-3 text-left text-[16px] font-medium transition-colors"
                         >
                             Dashboard
                         </button>
                     </div>
-                    <div className="border-t border-cw-grey-50">
+                    <div className="border-cw-grey-50 border-t">
                         <button
                             type="button"
                             role="menuitem"
                             onClick={logout}
-                            className="w-full text-left px-5 py-3 font-rubik font-medium text-[16px] text-cw-dark-blue-100 hover:bg-cw-grey-50 transition-colors"
+                            className="font-rubik text-cw-dark-blue-100 hover:bg-cw-grey-50 w-full px-5 py-3 text-left text-[16px] font-medium transition-colors"
                         >
                             Logout
                         </button>

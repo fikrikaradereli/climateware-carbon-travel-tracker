@@ -3,8 +3,18 @@ import { Icon } from "./ui/icon";
 
 const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const MONTHS = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December",
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
 ];
 
 export interface CalendarProps {
@@ -50,9 +60,7 @@ export function Calendar({ value, onChange, onClose, className = "" }: CalendarP
     }
 
     function isSameDay(a: Date, b: Date) {
-        return a.getFullYear() === b.getFullYear() &&
-               a.getMonth() === b.getMonth() &&
-               a.getDate() === b.getDate();
+        return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
     }
 
     function handleSelect(date: Date) {
@@ -61,14 +69,9 @@ export function Calendar({ value, onChange, onClose, className = "" }: CalendarP
     }
 
     return (
-        <div
-            className={[
-                "bg-white rounded-2xl shadow-lg p-4 w-[300px] select-none",
-                className,
-            ].filter(Boolean).join(" ")}
-        >
+        <div className={["w-75 rounded-2xl bg-white p-4 shadow-lg select-none", className].filter(Boolean).join(" ")}>
             {/* Month navigation */}
-            <div className="flex items-center justify-between mb-4">
+            <div className="mb-4 flex items-center justify-between">
                 <button
                     type="button"
                     aria-label="Previous month"
@@ -77,7 +80,7 @@ export function Calendar({ value, onChange, onClose, className = "" }: CalendarP
                 >
                     <Icon name="chevron" size={20} className="rotate-90" />
                 </button>
-                <span className="font-rubik font-semibold text-[16px] text-cw-dark-blue-100">
+                <span className="font-rubik text-cw-dark-blue-100 text-[16px] font-semibold">
                     {MONTHS[month]} {year}
                 </span>
                 <button
@@ -91,12 +94,9 @@ export function Calendar({ value, onChange, onClose, className = "" }: CalendarP
             </div>
 
             {/* Weekday headers */}
-            <div className="grid grid-cols-7 mb-1">
-                {DAYS.map(d => (
-                    <div
-                        key={d}
-                        className="text-center font-rubik text-[11px] font-medium text-cw-dark-blue-50 py-1"
-                    >
+            <div className="mb-1 grid grid-cols-7">
+                {DAYS.map((d) => (
+                    <div key={d} className="font-rubik text-cw-dark-blue-50 py-1 text-center text-[11px] font-medium">
                         {d}
                     </div>
                 ))}
@@ -112,13 +112,13 @@ export function Calendar({ value, onChange, onClose, className = "" }: CalendarP
                             type="button"
                             onClick={() => handleSelect(date)}
                             className={[
-                                "flex items-center justify-center size-[36px] rounded-full mx-auto",
+                                "mx-auto flex size-9 items-center justify-center rounded-full",
                                 "font-rubik text-[13px] transition-colors",
                                 selected
                                     ? "bg-cw-dark-blue-100 text-white"
                                     : current
-                                    ? "text-cw-dark-blue-100 hover:bg-cw-grey-50"
-                                    : "text-cw-grey-100 hover:bg-cw-grey-50",
+                                      ? "text-cw-dark-blue-100 hover:bg-cw-grey-50"
+                                      : "text-cw-grey-100 hover:bg-cw-grey-50",
                             ].join(" ")}
                         >
                             {date.getDate()}

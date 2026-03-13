@@ -19,7 +19,7 @@
 }
 
 body {
-    @apply m-0 font-rubik;
+    @apply font-rubik m-0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }

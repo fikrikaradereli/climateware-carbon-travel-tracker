@@ -16,7 +16,7 @@ export function MobileMenu({ isOpen, onClose, activeLink, onNavigate, onLogout }
 
     return (
         <div
-            className="fixed inset-0 z-50 bg-white flex flex-col px-6 pt-6 pb-8"
+            className="fixed inset-0 z-50 flex flex-col bg-white px-6 pt-6 pb-8"
             role="dialog"
             aria-modal="true"
             aria-label="Navigation menu"
@@ -26,19 +26,19 @@ export function MobileMenu({ isOpen, onClose, activeLink, onNavigate, onLogout }
                 type="button"
                 aria-label="Close menu"
                 onClick={onClose}
-                className="self-start text-cw-dark-blue-100 hover:text-cw-green-100 transition-colors mb-8"
+                className="text-cw-dark-blue-100 hover:text-cw-green-100 mb-8 self-start transition-colors"
             >
                 <Icon name="cross" size={20} />
             </button>
 
             {/* Nav labels — görsel gösterge, tıklanamaz */}
-            <nav className="flex flex-col gap-6 mb-8" aria-label="View indicator">
-                {(["WEB", "TABLET", "MOBILE"] as NavLink[]).map(link => (
+            <nav className="mb-8 flex flex-col gap-6" aria-label="View indicator">
+                {(["WEB", "TABLET", "MOBILE"] as NavLink[]).map((link) => (
                     <span
                         key={link}
                         aria-current={activeLink === link ? "page" : undefined}
                         className={[
-                            "font-montserrat text-[16px] font-semibold leading-none select-none",
+                            "font-montserrat text-[16px] leading-none font-semibold select-none",
                             activeLink === link ? "text-cw-green-100" : "text-cw-dark-blue-100",
                         ].join(" ")}
                     >
@@ -47,24 +47,30 @@ export function MobileMenu({ isOpen, onClose, activeLink, onNavigate, onLogout }
                 ))}
             </nav>
 
-            <div className="border-t border-cw-grey-50 mb-8" />
+            <div className="border-cw-grey-50 mb-8 border-t" />
 
             {/* Account actions */}
             <div className="flex flex-col gap-6">
-                {(["profile", "dashboard"] as AccountPage[]).map(page => (
+                {(["profile", "dashboard"] as AccountPage[]).map((page) => (
                     <button
                         key={page}
                         type="button"
-                        onClick={() => { onNavigate(page); onClose(); }}
-                        className="text-left font-rubik font-medium text-[16px] text-cw-dark-blue-100 hover:text-cw-green-100 transition-colors"
+                        onClick={() => {
+                            onNavigate(page);
+                            onClose();
+                        }}
+                        className="font-rubik text-cw-dark-blue-100 hover:text-cw-green-100 text-left text-[16px] font-medium transition-colors"
                     >
                         {page.charAt(0).toUpperCase() + page.slice(1)}
                     </button>
                 ))}
                 <button
                     type="button"
-                    onClick={() => { onLogout(); onClose(); }}
-                    className="text-left font-rubik font-medium text-[16px] text-cw-dark-blue-100 hover:text-cw-green-100 transition-colors"
+                    onClick={() => {
+                        onLogout();
+                        onClose();
+                    }}
+                    className="font-rubik text-cw-dark-blue-100 hover:text-cw-green-100 text-left text-[16px] font-medium transition-colors"
                 >
                     Logout
                 </button>

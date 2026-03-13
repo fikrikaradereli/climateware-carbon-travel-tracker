@@ -51,8 +51,8 @@ export function LanguageSwitcher({
                 type="button"
                 aria-haspopup="listbox"
                 aria-expanded={open}
-                onClick={() => setOpen(prev => !prev)}
-                className="inline-flex items-center gap-1 font-rubik font-medium text-[16px] text-cw-dark-blue-100 hover:text-cw-green-100 transition-colors cursor-pointer select-none"
+                onClick={() => setOpen((prev) => !prev)}
+                className="font-rubik text-cw-dark-blue-100 hover:text-cw-green-100 inline-flex cursor-pointer items-center gap-1 text-[16px] font-medium transition-colors select-none"
             >
                 <span>{value}</span>
                 <Icon
@@ -64,12 +64,10 @@ export function LanguageSwitcher({
 
             {/* Dropdown panel */}
             {open && (
-                <div className="absolute right-0 top-full mt-2 bg-white rounded-xl shadow-lg z-50 min-w-[160px] overflow-hidden">
+                <div className="absolute top-full right-0 z-50 mt-2 min-w-40 overflow-hidden rounded-xl bg-white shadow-lg">
                     {/* Panel header */}
-                    <div className="flex items-center justify-end gap-2 px-4 py-3 border-b border-cw-grey-50">
-                        <span className="font-rubik font-medium text-[14px] text-cw-dark-blue-100">
-                            {value}
-                        </span>
+                    <div className="border-cw-grey-50 flex items-center justify-end gap-2 border-b px-4 py-3">
+                        <span className="font-rubik text-cw-dark-blue-100 text-[14px] font-medium">{value}</span>
                         <button
                             type="button"
                             aria-label="Close language selector"
@@ -82,7 +80,7 @@ export function LanguageSwitcher({
 
                     {/* Language list */}
                     <ul role="listbox" className="py-1">
-                        {options.map(opt => {
+                        {options.map((opt) => {
                             const active = opt.code === value;
                             return (
                                 <li
@@ -91,7 +89,7 @@ export function LanguageSwitcher({
                                     aria-selected={active}
                                     onClick={() => handleSelect(opt.code)}
                                     className={[
-                                        "px-4 py-3 font-rubik text-[15px] cursor-pointer transition-colors",
+                                        "font-rubik cursor-pointer px-4 py-3 text-[15px] transition-colors",
                                         active
                                             ? "text-cw-pink-100 font-semibold"
                                             : "text-cw-dark-blue-100 hover:bg-cw-grey-50",
