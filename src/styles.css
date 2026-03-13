@@ -1,6 +1,10 @@
 @import "tailwindcss";
+@import "@fontsource-variable/rubik";
+@import "@fontsource-variable/montserrat";
 
 @theme {
+    --font-rubik: "Rubik Variable", sans-serif;
+    --font-montserrat: "Montserrat Variable", sans-serif;
     --color-cw-pink-50: #f14794;
     --color-cw-pink-100: #ed1979;
     --color-cw-pink-150: #c20f60;
@@ -15,10 +19,7 @@
 }
 
 body {
-    @apply m-0;
-    font-family:
-        -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-        "Droid Sans", "Helvetica Neue", sans-serif;
+    @apply m-0 font-rubik;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
