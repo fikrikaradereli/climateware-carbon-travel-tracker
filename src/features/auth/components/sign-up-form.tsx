@@ -68,6 +68,7 @@ export function SignUpForm() {
                             {(field) => (
                                 <TextField
                                     placeholder="First Name"
+                                    aria-label="First Name"
                                     value={field.state.value}
                                     onChange={(e) => field.handleChange(e.target.value)}
                                     onBlur={field.handleBlur}
@@ -80,6 +81,7 @@ export function SignUpForm() {
                             {(field) => (
                                 <TextField
                                     placeholder="Last Name"
+                                    aria-label="Last Name"
                                     value={field.state.value}
                                     onChange={(e) => field.handleChange(e.target.value)}
                                     onBlur={field.handleBlur}
@@ -95,6 +97,7 @@ export function SignUpForm() {
                             <TextField
                                 type="email"
                                 placeholder="Email"
+                                aria-label="Email"
                                 value={field.state.value}
                                 onChange={(e) => field.handleChange(e.target.value)}
                                 onBlur={field.handleBlur}
@@ -109,6 +112,7 @@ export function SignUpForm() {
                             <TextField
                                 type={showPassword ? "text" : "password"}
                                 placeholder="Password"
+                                aria-label="Password"
                                 value={field.state.value}
                                 onChange={(e) => field.handleChange(e.target.value)}
                                 onBlur={field.handleBlur}

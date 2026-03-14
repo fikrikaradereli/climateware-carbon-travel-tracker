@@ -56,6 +56,7 @@ export function LoginForm() {
                             <TextField
                                 type="email"
                                 placeholder="Email"
+                                aria-label="Email"
                                 value={field.state.value}
                                 onChange={(e) => field.handleChange(e.target.value)}
                                 onBlur={field.handleBlur}
@@ -70,6 +71,7 @@ export function LoginForm() {
                             <TextField
                                 type={showPassword ? "text" : "password"}
                                 placeholder="Password"
+                                aria-label="Password"
                                 value={field.state.value}
                                 onChange={(e) => field.handleChange(e.target.value)}
                                 onBlur={field.handleBlur}
