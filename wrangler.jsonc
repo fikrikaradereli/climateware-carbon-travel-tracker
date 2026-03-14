@@ -11,6 +11,13 @@
     "observability": {
         "enabled": true,
     },
+    "d1_databases": [
+        {
+            "binding": "DB",
+            "database_name": "climateware-db",
+            "database_id": "37ad20ec-d6b9-4050-b1c2-4bd32cf98c2a",
+        },
+    ],
     /**
      * Smart Placement
      * https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
