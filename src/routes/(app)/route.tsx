@@ -1,13 +1,32 @@
-import { createFileRoute, Outlet, useNavigate } from "@tanstack/react-router";
+import { useEffect } from "react";
+import { createFileRoute, Outlet, redirect, useNavigate } from "@tanstack/react-router";
 import { Header } from "@/features/core/components/header";
 import { Footer } from "@/features/core/components/footer";
+import { useAuthStore } from "@/features/auth/auth-store";
 
 export const Route = createFileRoute("/(app)")({
+    beforeLoad: () => {
+        if (typeof window === "undefined") return;
+        const { isAuthenticated } = useAuthStore.getState();
+        if (!isAuthenticated) {
+            throw redirect({ to: "/login" });
+        }
+    },
     component: AppLayout,
 });
 
 function AppLayout() {
     const navigate = useNavigate();
+    const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
+    const logout = useAuthStore((s) => s.logout);
+
+    useEffect(() => {
+        if (!isAuthenticated) {
+            void navigate({ to: "/login", replace: true });
+        }
+    }, [isAuthenticated, navigate]);
+
+    if (!isAuthenticated) return null;
 
     return (
         <div className="flex min-h-screen flex-col">
@@ -15,7 +34,10 @@ function AppLayout() {
                 onNavigate={(page) => {
                     void navigate({ to: page === "dashboard" ? "/dashboard" : "/profile" });
                 }}
-                onLogout={() => void navigate({ to: "/" })}
+                onLogout={() => {
+                    logout();
+                    void navigate({ to: "/" });
+                }}
             />
             <main className="flex-1">
                 <Outlet />
