@@ -9,6 +9,7 @@ import type { NavLink } from "./mobile-menu";
 
 function useActiveNav(): NavLink {
     function compute(): NavLink {
+        if (typeof window === "undefined") return "WEB";
         const w = window.innerWidth;
         if (w >= 1024) return "WEB";
         if (w >= 640) return "TABLET";

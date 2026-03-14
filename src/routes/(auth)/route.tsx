@@ -1,12 +1,30 @@
-import { createFileRoute, Outlet, useNavigate } from "@tanstack/react-router";
+import { useEffect } from "react";
+import { createFileRoute, Outlet, redirect, useNavigate } from "@tanstack/react-router";
 import { Button } from "@/features/core/components/ui/button";
+import { useAuthStore } from "@/features/auth/auth-store";
 
 export const Route = createFileRoute("/(auth)")({
+    beforeLoad: () => {
+        if (typeof window === "undefined") return;
+        const { isAuthenticated } = useAuthStore.getState();
+        if (isAuthenticated) {
+            throw redirect({ to: "/dashboard" });
+        }
+    },
     component: AuthLayout,
 });
 
 function AuthLayout() {
     const navigate = useNavigate();
+    const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            void navigate({ to: "/dashboard", replace: true });
+        }
+    }, [isAuthenticated, navigate]);
+
+    if (isAuthenticated) return null;
 
     return (
         <div className="flex min-h-screen flex-col lg:h-screen lg:flex-row">
