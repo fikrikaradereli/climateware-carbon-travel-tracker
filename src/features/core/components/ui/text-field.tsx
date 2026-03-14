@@ -5,20 +5,24 @@ export interface TextFieldProps extends Omit<React.InputHTMLAttributes<HTMLInput
     label?: string;
     error?: string;
     helperText?: string;
+    rightAddon?: React.ReactNode;
     className?: string;
 }
 
 export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(function TextField(
-    { label, error, helperText, disabled, className = "", ...inputProps },
+    { label, error, helperText, rightAddon, disabled, className = "", ...inputProps },
     ref
 ) {
+    const hasRightSlot = Boolean(error ?? rightAddon);
+
     const inputClasses = [
         "w-full h-[44px] rounded-[8px] px-4 py-2 gap-2",
         "font-rubik text-[17px] font-normal leading-[25px]",
         "outline-none transition-colors duration-150",
         "placeholder:text-cw-dark-blue-50",
+        hasRightSlot && "pr-12",
         disabled ? "bg-cw-grey-50 text-cw-dark-blue-50 pointer-events-none" : "bg-white text-cw-dark-blue-100",
-        error ? "border border-cw-red-100" : "border border-transparent focus:border-cw-dark-blue-100",
+        error ? "border border-cw-red-100" : "border border-cw-grey-100 focus:border-cw-dark-blue-100",
     ]
         .filter(Boolean)
         .join(" ");
@@ -30,11 +34,13 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(function T
             )}
             <div className="relative flex items-center">
                 <input ref={ref} disabled={disabled} {...inputProps} className={inputClasses} />
-                {error && (
+                {error ? (
                     <span className="text-cw-red-100 pointer-events-none absolute right-4">
                         <Icon name="info" size={20} aria-label="Hata" />
                     </span>
-                )}
+                ) : rightAddon ? (
+                    <span className="absolute right-4 flex items-center">{rightAddon}</span>
+                ) : null}
             </div>
             {(error ?? helperText) && (
                 <p
